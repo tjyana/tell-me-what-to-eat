@@ -1,13 +1,35 @@
-from tranformers import pipeline
+import streamlit as st
+import random
 
-# Load pre-trained GPT-3 model for text generation
-gpt3_model = pipeline('text-generation', model='EleutherAI/gpt-neo-2.7B')
+def main():
+    st.title("User Input App")
 
-# Prompt for text generation
-prompt_text = "Once upon a time, in a land far away"
+    # Text input
+    user_input = st.text_input("sawadee krap! what is your name:")
 
-# Generate text
-generated_text = gpt3_model(prompt_text, max_length=100, do_sample=True)[0]['generated_text']
+    # Button to trigger action
+    if st.button("Submit"):
+        if user_input:
+            # Process user input and return a message
+            message = process_input(user_input)
+            st.success(message)
+        else:
+            st.warning("Please tell me your name.")
 
-# Display text
-print(generated_text)
+def process_input(input_text):
+    # Example: Echo the input message
+    foods = ['ข้าวมันไก่', 'ก๋วยเตี๋ยวเป็ด', 'ข้าวมันไก่', 'ข้าวหมูแดง', 'ข้าวขาหมู',
+             'ข้าวหน้าเป็ด', 'ข้าวผัด', 'ข้าวขาหมู', 'ข้าวหมูกรอบ', 'ข้าวไข่เจียว',
+             'ข้าวผัดกระเทียม', 'Hamasushi (not Sushiro)', 'food', 'ข้าวผัดปู',
+             'ข้าวหน้าเนื้อ', 'ข้าวหมูกรอบ', 'ข้าวหมูทอด', 'ข้าวหมูสับ', 'ข้าวผัดปู',
+             'khamu', 'kaki', 'katsuya', 'ice cream', 'spicy cashew nuts',
+             'yayoi kusama gaaufffraeafres', 'kfc', 'kfc', 'kfc', 'kfc',
+             'kfc', 'best beef', 'saenee', 'duck', 'prik nampla',
+             'Hamasushi (not Sushiro)', 'Shanti', 'phet phet', 'chicken feeet',
+             'cheese nan', 'cheese nan', 'cheese nan', 'sashimi bowl',
+             'sashimi bowl', 'abura', 'abura', 'abura', 'abura']
+    random_food = random.choice(foods)
+    return f"Hello Jinnichan! You should eat: {random_food}"
+
+if __name__ == "__main__":
+    main()
