@@ -1,5 +1,6 @@
 import streamlit as st
 import random
+import os
 
 def main():
     st.title("Food Recommender")
@@ -29,8 +30,13 @@ def process_input(input_text):
              'cheese nan', 'cheese nan', 'cheese nan', 'sashimi bowl',
              'sashimi bowl', 'abura', 'abura', 'abura', 'abura', 'spicy nuts',
              'peeps', 'peeps', 'somtam']
+
     random_food = random.choice(foods)
-    return f"Hello Jinnichan! You should eat: {random_food}"
+
+    answer = f"""Hello Jinnichan! I knu it's you!! \n
+                You should eat: \n
+                {random_food}"""
+    return answer
 
 if __name__ == "__main__":
     main()
