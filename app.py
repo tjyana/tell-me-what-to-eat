@@ -27,7 +27,8 @@ def process_input(input_text):
              'kfc', 'best beef', 'saenee', 'duck', 'prik nampla',
              'Hamasushi (not Sushiro)', 'Shanti', 'phet phet', 'chicken feeet',
              'cheese nan', 'cheese nan', 'cheese nan', 'sashimi bowl',
-             'sashimi bowl', 'abura', 'abura', 'abura', 'abura']
+             'sashimi bowl', 'abura', 'abura', 'abura', 'abura', 'spicy nuts',
+             'peeps', 'peeps', 'somtam']
     random_food = random.choice(foods)
     return f"Hello Jinnichan! You should eat: {random_food}"
 
