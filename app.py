@@ -2,7 +2,7 @@ import streamlit as st
 import random
 
 def main():
-    st.title("User Input App")
+    st.title("Jinnichan's Food Recommender")
 
     # Text input
     user_input = st.text_input("sawadee krap! what is your name:")
