@@ -35,3 +35,6 @@ Thumbs.db
 # notebooks
 .ipynb_checkpoints/
 .ipynb
+
+# Directories
+notebooks/
