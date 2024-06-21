@@ -41,7 +41,8 @@ def process_input(input_text):
                 {random_food}"""
         return answer
     else:
-        return f"Hello {input_text}! You should eat: {random_food}"
+        answer =  f"Hello {input_text}! You should eat: {random_food}"
+        return answer
 
 
 if __name__ == "__main__":
