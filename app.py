@@ -33,10 +33,16 @@ def process_input(input_text):
 
     random_food = random.choice(foods)
 
-    answer = f"""Hello Jinnichan! I knu it's you!! \n
+    makyu = ['jinnichan', 'makyu', 'jin']
+
+    if input_text.lower() in makyu:
+        answer = f"""Hello makyu! I knu it's you!! \n
                 You should eat: \n
                 {random_food}"""
-    return answer
+        return answer
+    else:
+        return f"Hello {input_text}! You should eat: {random_food}"
+
 
 if __name__ == "__main__":
     main()
