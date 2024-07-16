@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.functions import suggest_food
+from utils.functions import suggest_food, image_generator
 import random
 import os
 
@@ -74,13 +74,17 @@ def main():
 
         st.header("You should eat...")
         output = suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, recent_meals)
-        process_inputs(output)
+        url = image_generator(output)
+        # last_output = output.split("\n")[-2]
+        process_inputs(output, url)
 
 
-def process_inputs(input1):
+
+def process_inputs(input1, url):
     # Function to display the final output
     # Process the inputs here
     st.write(" ", input1)
+    st.image(url, use_column_width=True)
 
 
 if __name__ == "__main__":

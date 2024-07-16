@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+from gradio_client import Client
 from dotenv import load_dotenv
 import os
 
@@ -19,6 +20,7 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
     Favorite cuisines: ```{favorite_cuisines}```
     Dislikes: ```{dislikes}```
     Recent meals: ```{recent_meals}```
+
     Given the above information, please analyze this person's favorite foods, flavors, and cuisines.
     Based on this, provide a recommendation for a meal that they would enjoy.
     Please also consider their recent meals and things they don't like, and avoid suggesting those.
@@ -32,7 +34,7 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
     If inputs don't make sense, it might be a Thai word spelled out in English.
 
     Output should be the name of the dish, followed by a short summary (~20 words) of what's in the dish.
-    Output format:
+    Please make sure to follow this output format:
 
     [Name of the dish]
     [Short summary of what's in the dish]
@@ -42,3 +44,27 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
     answer = response.text
 
     return answer
+
+    # Last output: ```{last_output}```
+
+
+
+
+def image_generator(recipe):
+
+    '''
+    Generates images for recipe.
+
+    '''
+
+    client = Client("ByteDance/SDXL-Lightning")
+
+    result = client.predict(
+            recipe, # str  in 'Enter your prompt (English)' Textbox component
+            "1-Step",   # Literal['1-Step', '2-Step', '4-Step', '8-Step']  in 'Select inference steps' Dropdown component
+            api_name="/generate_image_1"
+    )
+    file_path = result.split('gradio')[1]
+    url = 'https://bytedance-sdxl-lightning.hf.space/file=/tmp/gradio' + file_path
+
+    return url
