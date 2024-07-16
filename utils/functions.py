@@ -3,12 +3,12 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 
-# for testing locally --------------------------------------
-load_dotenv()
-goog_api_key = os.getenv('GOOGLE_API_KEY') # create a variable in .env file 'GOOGLE_API_KEY' and add the api key there
+# # for testing locally --------------------------------------
+# load_dotenv()
+# goog_api_key = os.getenv('GOOGLE_API_KEY') # create a variable in .env file 'GOOGLE_API_KEY' and add the api key there
 
-# # for testing on streamlit share -----------------------------
-# goog_api_key = st.secrets['GOOGLE_API_KEY']
+# for testing on streamlit share -----------------------------
+goog_api_key = st.secrets['GOOGLE_API_KEY']
 
 def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, recent_meals):
     model = genai.GenerativeModel('gemini-1.5-flash')
@@ -36,6 +36,7 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
 
     [Name of the dish]
     [Short summary of what's in the dish]
+
     """)
 
     answer = response.text
