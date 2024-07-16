@@ -60,7 +60,7 @@ def main():
     favorite_foods = st.sidebar.text_area("Favorite foods", height=100)
     favorite_flavors = st.sidebar.text_area("Favorite flavors", height=100)
     favorite_cuisines = st.sidebar.text_area("Favorite cuisines", height=100)
-    dont_want_to_eat = st.sidebar.text_area("Don't want to eat", height=100)
+    dislikes = st.sidebar.text_area("Dislikes", height=100)
     recent_meals = st.sidebar.text_area("Recent meals", height=100)
 
     # Submit button
@@ -69,18 +69,18 @@ def main():
         st.session_state.favorite_foods = favorite_foods
         st.session_state.favorite_flavors = favorite_flavors
         st.session_state.favorite_cuisines = favorite_cuisines
-        st.session_state.dont_want_to_eat = dont_want_to_eat
+        st.session_state.dislikes = dislikes
         st.session_state.recent_meals = recent_meals
 
         st.header("You should eat...")
-        output = suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dont_want_to_eat, recent_meals)
+        output = suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, recent_meals)
         process_inputs(output)
 
 
 def process_inputs(input1):
     # Function to display the final output
     # Process the inputs here
-    st.title(" ", input1)
+    st.write(" ", input1)
 
 
 if __name__ == "__main__":
