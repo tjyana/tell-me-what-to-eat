@@ -11,15 +11,14 @@ import os
 # for testing on streamlit share -----------------------------
 goog_api_key = st.secrets['GOOGLE_API_KEY']
 
-def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, recent_meals):
+def suggest_food(favorite_foods, favorite_flavors, dislikes, others):
     model = genai.GenerativeModel('gemini-1.5-flash')
 
     response = model.generate_content(f"""
     Favorite foods: ```{favorite_foods}```
-    Favorite flavors: ```{favorite_flavors}```
-    Favorite cuisines: ```{favorite_cuisines}```
-    Dislikes: ```{dislikes}```
-    Recent meals: ```{recent_meals}```
+    Favorite flavors and cuisines: ```{favorite_flavors}```
+    Other considerations: ```{others}```
+    Do not suggest: ``` {dislikes}```
 
     Given the above information, please analyze this person's favorite foods, flavors, and cuisines.
     Based on this, provide a recommendation for a meal that they would enjoy.
@@ -34,10 +33,10 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
     If inputs don't make sense, it might be a Thai word spelled out in English.
 
     Output should be the name of the dish, followed by a short summary (~20 words) of what's in the dish.
-    Please make sure to follow this output format:
+    Output format:
 
     [Name of the dish]
-    [Short summary of what's in the dish]
+    [Short summary of what's in the dish ~20 words]
 
     """)
 
@@ -50,7 +49,7 @@ def suggest_food(favorite_foods, favorite_flavors, favorite_cuisines, dislikes, 
 
 
 
-def image_generator(recipe):
+def image_generator(answer):
 
     '''
     Generates images for recipe.
@@ -60,7 +59,7 @@ def image_generator(recipe):
     client = Client("ByteDance/SDXL-Lightning")
 
     result = client.predict(
-            recipe, # str  in 'Enter your prompt (English)' Textbox component
+            answer, # str  in 'Enter your prompt (English)' Textbox component
             "1-Step",   # Literal['1-Step', '2-Step', '4-Step', '8-Step']  in 'Select inference steps' Dropdown component
             api_name="/generate_image_1"
     )
