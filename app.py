@@ -54,6 +54,10 @@ import os
 if 'last_output' not in st.session_state:
     st.session_state.last_output = None
 
+titles = ['You should eat...', 'How about...', 'I recommend...', 'Try this!', 'Why not...',
+          'Have you had...', 'You might like...', 'Consider...', 'What about...']
+random_title = random.choice(titles)
+
 def main():
     # Title
     st.sidebar.title("Food Recommender")
@@ -73,7 +77,7 @@ def main():
         st.session_state.dislikes = dislikes
         st.session_state.others = others
 
-        st.header("You should eat...")
+        st.header(random_title)
 
         output = suggest_food(favorite_foods, favorite_flavors, dislikes, others)
 
