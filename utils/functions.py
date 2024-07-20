@@ -22,7 +22,6 @@ def suggest_food(favorite_foods, favorite_flavors, dislikes, others):
 
     Given the above information, please analyze this person's favorite foods, flavors, and cuisines.
     Based on this, provide a recommendation for a meal that they would enjoy.
-    Please also consider their recent meals and things they don't like, and avoid suggesting those.
     If they provide limited information, please try to extrapolate flavor profile of that dish,
     and recommend foods with similar profiles from other cuisines.
     (eg. If they say their favorite dish is somtam, please don't suggest somtam,
