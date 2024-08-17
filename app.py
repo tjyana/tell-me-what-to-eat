@@ -66,7 +66,7 @@ def main():
     # Input fields
     favorite_foods = st.sidebar.text_input("Favorite foods")
     favorite_flavors = st.sidebar.text_input("Favorite flavors or cuisines")
-    dislikes = st.sidebar.text_input("Want to avoid (dislikes, allergies, recent meals)")
+    avoid = st.sidebar.text_input("Want to avoid (dislikes, allergies, recent meals)")
     others = st.sidebar.text_input("Other considerations (optional)")
 
     # Submit button
@@ -74,15 +74,15 @@ def main():
         # Process the inputs
         st.session_state.favorite_foods = favorite_foods
         st.session_state.favorite_flavors = favorite_flavors
-        st.session_state.dislikes = dislikes
+        st.session_state.avoid = avoid
         st.session_state.others = others
 
         st.header(random_title)
 
-        output = suggest_food(favorite_foods, favorite_flavors, dislikes, others)
+        output = suggest_food(favorite_foods, favorite_flavors, avoid, others)
 
 
-        # output = suggest_food(favorite_foods, favorite_flavors, dislikes, others, last_output)
+        # output = suggest_food(favorite_foods, favorite_flavors, avoid, others, last_output)
 
 
         url = image_generator(output)

@@ -4,21 +4,21 @@ from gradio_client import Client
 from dotenv import load_dotenv
 import os
 
-# # for testing locally --------------------------------------
+# for testing locally --------------------------------------
 # load_dotenv()
 # goog_api_key = os.getenv('GOOGLE_API_KEY') # create a variable in .env file 'GOOGLE_API_KEY' and add the api key there
 
 # for testing on streamlit share -----------------------------
 goog_api_key = st.secrets['GOOGLE_API_KEY']
 
-def suggest_food(favorite_foods, favorite_flavors, dislikes, others):
+def suggest_food(favorite_foods, favorite_flavors, avoid, others):
     model = genai.GenerativeModel('gemini-1.5-flash')
 
     response = model.generate_content(f"""
     Favorite foods: ```{favorite_foods}```
     Favorite flavors and cuisines: ```{favorite_flavors}```
     Other considerations: ```{others}```
-    Do not suggest: ``` {dislikes}```
+    Do not suggest: ``` {avoid}```
 
     Given the above information, please analyze this person's favorite foods, flavors, and cuisines.
     Based on this, provide a recommendation for a meal that they would enjoy.
@@ -62,7 +62,7 @@ def image_generator(answer):
             "1-Step",   # Literal['1-Step', '2-Step', '4-Step', '8-Step']  in 'Select inference steps' Dropdown component
             api_name="/generate_image_1"
     )
-    file_path = result.split('gradio')[1]
-    url = 'https://bytedance-sdxl-lightning.hf.space/file=/tmp/gradio' + file_path
+    # file_path = result.split('gradio')[1]
+    # url = 'https://bytedance-sdxl-lightning.hf.space/file=/tmp/gradio' + file_path
 
-    return url
+    return result
